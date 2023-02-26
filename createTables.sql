@@ -1,4 +1,3 @@
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   "name" VARCHAR(20) NOT NULL,

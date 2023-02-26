@@ -3,7 +3,6 @@ import { QueryConfig } from 'pg'
 import { client } from '../database'
 import  AppError  from '../errors/appError'
 
-
 const verifyEmailIsValidMiddleware = async (req: Request, res:Response, next: NextFunction): Promise<Response | void> => {
 
     const email: string = req.body.email
@@ -32,5 +31,4 @@ const verifyEmailIsValidMiddleware = async (req: Request, res:Response, next: Ne
       
     return next()
 }
-
 export default verifyEmailIsValidMiddleware

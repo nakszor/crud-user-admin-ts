@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express'
 import { client } from '../../database'
 import { TUserQueryResponse,  TUserResponse } from '../../interfaces/user.interfaces'

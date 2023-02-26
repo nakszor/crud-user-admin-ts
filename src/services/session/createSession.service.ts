@@ -47,7 +47,7 @@ const loginService = async (email: string, password: string) => {
     );
   
     return { token };
-  }
+}
   
-  export default loginService;
+export default loginService;
   

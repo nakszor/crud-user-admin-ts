@@ -1,7 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import { ZodError } from 'zod';
-import AppError from './appError';
-
+import { NextFunction, Request, Response } from 'express'
+import { ZodError } from 'zod'
+import AppError from './appError'
 
 const handdleError = (error: Error, req: Request, res: Response, _:NextFunction) => {
     
@@ -24,6 +23,4 @@ const handdleError = (error: Error, req: Request, res: Response, _:NextFunction)
         message: 'Internal server error.'
     })
 }
-
-
 export default handdleError

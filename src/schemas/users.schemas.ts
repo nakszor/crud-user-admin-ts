@@ -1,6 +1,5 @@
 import { hashSync } from 'bcryptjs'
 import { z } from 'zod'
-import  ZodError  from 'zod'
 import AppError from '../errors/appError'
 
 export const userSchema = z.object({
@@ -31,4 +30,3 @@ export const userUpdateSchema = z.object({
   });
   
 export const userWithoutPasswordSchema = userCreatedSchema.omit({password: true})
-export const userListSchema = z.array(userWithoutPasswordSchema)

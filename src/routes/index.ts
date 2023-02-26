@@ -7,5 +7,4 @@ const router = Router()
 router.use('/users', userRouter)
 router.use('/login', sessionRouter)
 
-
 export default router

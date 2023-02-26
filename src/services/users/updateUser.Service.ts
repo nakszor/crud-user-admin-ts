@@ -1,6 +1,6 @@
 import { client } from '../../database'
-import { Request, Response } from 'express'
-import { TUserQueryResponse, TUserResponse } from '../../interfaces/user.interfaces'
+import { Request } from 'express'
+import {  TUserQueryResponse,TUserResponse } from '../../interfaces/user.interfaces'
 import { userWithoutPasswordSchema } from '../../schemas/users.schemas'
 
 const updateUserService = async (req: Request): Promise<TUserResponse> => {
@@ -40,7 +40,7 @@ const updateUserService = async (req: Request): Promise<TUserResponse> => {
     throw new Error('User not found');
   }
 
-  const updatedUserData = result.rows[0];
+  const updatedUserData:TUserQueryResponse = result.rows[0];
 
   const updatedUserResponse: TUserResponse = userWithoutPasswordSchema.parse(updatedUserData);
 
