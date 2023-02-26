@@ -23,12 +23,16 @@ const loginService = async (email: string, password: string) => {
 
       throw new AppError('Wrong email or password', 401);
     }
+    if (!user.active) {
+
+      throw new AppError('Wrong email or password', 401);
+    }
   
     const matchPassword: boolean = await compare(password, user.password);
     
     if (!matchPassword) {
       
-      throw new AppError('Wrong  password', 401);
+      throw new AppError('Wrong email or password', 401);
     }
   
     const token: string = jwt.sign(

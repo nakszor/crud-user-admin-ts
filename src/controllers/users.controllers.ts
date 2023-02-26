@@ -16,7 +16,13 @@ export const retrieveUserController = async (req: Request, res: Response):Promis
     const data = await retrieveUserService(req, res)
     return res.status(200).json(data)
 }
-export const updateUserController = async (req: Request, res: Response):Promise<Response> =>{
-    const data = await updateUserService(req,res)
-    return res.status(201).json(data)
-}
+export const updateUserController = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const updatedUserData = await updateUserService(req);
+      return res.status(200).json(updatedUserData);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+};
+  
