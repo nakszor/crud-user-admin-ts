@@ -1,10 +1,12 @@
 {
-  "name": "-Kenzie-Academy-Brasil-Developers-m4-t14-crud-adm-nakszor",
+  "name": "crud-adm-nakszor",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsnd --cls --rs --ignore-watch node_modules src/server.ts"
+    "dev": "tsnd --cls --rs --ignore-watch node_modules src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "repository": "git@github.com:Kenzie-Academy-Brasil-Developers/-Kenzie-Academy-Brasil-Developers-m4-t14-crud-adm-nakszor.git",
   "author": "<anacarlaa16@gmail.com>",

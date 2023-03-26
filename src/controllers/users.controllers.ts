@@ -1,11 +1,6 @@
 import { Request, Response } from 'express'
-import AppError from '../errors/appError'
-import createUserService from '../services/users/createUsers.service'
-import listUserService from '../services/users/listUser.service'
-import retrieveUserService from '../services/users/retrieveUser.service'
-import updateUserService from '../services/users/updateUser.Service'
-import deleteUserService from '../services/users/deleteUser.service'
-import reactivateUserService from '../services/users/reactivateUser.service'
+import {createUserService, listUserService, reactivateUserService,
+        retrieveUserService, updateUserService, deleteUserService} from '../services/users'
 
 export const createUserController = async (req: Request, res: Response):Promise<Response> =>{
     const data = await createUserService(req.body)
