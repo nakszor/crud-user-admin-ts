@@ -1,8 +1,7 @@
 import app from './app';
-import 'dotenv/config'
 import {databaseInit} from './database'
 
-const port = process.env.PORT
+const port = 3000
 
 app.listen(port, async () =>{
     await databaseInit()
