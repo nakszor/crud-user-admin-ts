@@ -4,7 +4,7 @@ A simple REST API in Node.js
 
 API Endpoints
 
-| Methods     | Urls             |Description                   |
+| Methods     | Urls             | Description                  |
 | ----------- | -----------      | -----------                  |
 | GET         | /users           |Get all users                 |
 | GET         | /users/profile   |Get a specific user           |
@@ -18,26 +18,16 @@ API Endpoints
 
 Clone the repository.
 
-```bash
-https://github.com/nakszor/crud-user-admin-ts
-cd crud-user-admin-ts
-```
 Create a postgreSql database.
 
 Create the "users" table using the SQL codes on the file "createTable.sql"
 
 Create the .env file.
 
-Install the dependencies.
+Install the dependencies with: "yarn"
 
-```bash
-yarn
-```
-To start the express server, run:
+To start the express server, run: "yarn dev"
 
-```bash
-yarn dev
-```
 ## EndPoints 
 
 Route: GET /users
@@ -74,7 +64,7 @@ Errors
 500 Internal Server Error: if an error occurred while retrieving the list of users.
 
 
-Route: GET users/profile
+Route: GET /users/profile
 
 Description:
 This route retrieves the profile information of a user who is currently logged in. The route is protected and can only be accessed by users who have a valid JSON Web Token (JWT). 
@@ -143,7 +133,7 @@ Errors
 409 Conflict: if the user tries to register an email that already exists on the database. 
 500 Internal Server Error: if an error occurred while retrieving the list of users.
 
-Route: PATCH /:id
+Route: PATCH /users/:id
 
 Description:
 This route updates a user's account information. It expects a JSON object containing the updated user information in the request body. Infos that can be update: the email, the name and the password. A regular user can only update his own information, a user with admin permission can update information of every user on the database.
@@ -178,4 +168,60 @@ Errors:
 409 Conflict: if the user tries to update his email to an email that already exists on the database. 
 500 Internal Server Error: if an error occurred while retrieving the list of users.
 
+Route: DELETE /users/:id
 
+Description:
+Does a soft delete on the user account changing the key "active" to false. Only users with admin permission are allowed to desactivate other users accounts, regular users can desactivate their own accounts. 
+
+Parameters:
+- id (number): The ID of the user account to delete.
+
+Headers:
+- Authorization: A valid JWT token in the format "Bearer <token>"
+
+Errors:
+401 Unauthorized: if the user is not authenticated.
+403 Forbidden: if the user is authenticated but does not have admin permission and it's trying to delete another user account.
+409: when a user tries to desactivate an inactive user.
+500 Internal Server Error: if an error occurred while retrieving the list of users.
+
+Route: PUT /users/:id
+
+Description:
+Reactivate the user account changing the key "active" to true. Only users with admin permission are allowed to activate other user accounts. 
+
+Parameters:
+- id (number): The ID of the user account to activate.
+
+Headers:
+- Authorization: A valid JWT token in the format "Bearer <token>"
+
+Errors:
+401 Unauthorized: if the user is not authenticated.
+403 Forbidden: if the user is authenticated but does not have admin permission and it's trying to delete another user account.
+409: when a user tries to desactivate an inactive user.
+500 Internal Server Error: if an error occurred while retrieving the list of users.
+
+Route: POST /login
+
+Description:
+This route authenticate the users and return a JWT token so they can acess the service. It expects a JSON object containing the user's email and password in the request body. 
+
+Example of Request Body to create a regular user (without admin permission):
+
+{
+  "email": "teste@mail.com",
+  "password": "1234"
+}
+
+Return:
+
+{
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjc5OTYzNTk3LCJleHAiOjE2Nzk5NjcxOTcsInN1YiI6IjEifQ.LnmqG53i4gHMEU7p1_GfxU1sBXTLuyAC9fdyRzc5S8E"
+}
+
+
+Errors
+400 Bad Request: if the request body does not contain the right data types.
+401 Unauthorized: if the user tries to login with wrong password/email or if it is an inactive user. 
+500 Internal Server Error: if an error occurred while retrieving the list of users.
