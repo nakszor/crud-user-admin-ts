@@ -28,6 +28,7 @@ Install the dependencies with: "yarn"
 
 To start the express server, run: "yarn dev"
 
+You can test all the routes by importing the InsomniaRoutes.json in your insomnia interface.
 ## EndPoints 
 
 Route: GET /users
